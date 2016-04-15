@@ -35,4 +35,4 @@ class Temp(checks.AgentCheck):
         for key, value in stats.iteritems():
           # Writes data to monasca that will go to InfluxDB
           self.gauge(key, value, dimensions)
-        log.debug('Collected {0} cpu metrics'.format(len(stats)))                                                                                        1,1           Top
+        log.debug('Collected {0} cpu temp metrics'.format(len(stats)))                                                                                        1,1           Top
