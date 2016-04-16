@@ -21,15 +21,15 @@ class Fan(checks.AgentCheck):
 
 		stats ={}
 		for s in range(0,len(sensorList)-1):
-			temp = [x.strip() for x in sensorList[s].split('|')]
-			if "FAN" in temp[0] and "TACH" in temp[0]:
-				# fanNum = temp[0]
+			sensor = [x.strip() for x in sensorList[s].split('|')]
+			if "FAN" in sensor[0] and "TACH" in sensor[0]:
+				# fanNum = sensor[0]
 				# fanNum = fanNum[fanNum.index('N')+1:fanNum.index('_')]
-				# tachNum = temp[0]
+				# tachNum = sensor[0]
 				# tachNum = tachNum[len(tachNum)-1:]
-				data = float(temp[1])
-				fanTach = temp[0].lower()
-				stats["fan."+str(fanTach)+"_speed"] = data 
+				data = int(float(sensor[1]))
+				fanTach = sensor[0].lower()
+				stats["fan."+str(fanTach)+".speed"] = data 
 		for key, value in stats.iteritems():
         	# Writes data to monasca that will go to InfluxDB
         	self.gauge(key, value, dimensions)
